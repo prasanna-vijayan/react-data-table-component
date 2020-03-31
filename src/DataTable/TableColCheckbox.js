@@ -14,9 +14,9 @@ const TableColStyle = styled(CellBase)`
 `;
 
 const TableColCheckbox = ({ head }) => {
-  const { dispatch, data, selectedRows, allSelected, selectableRowsComponent, selectableRowsComponentProps, selectableRowDisabled } = useTableContext();
+  const { dispatch, data, selectedRows, allSelected, selectableRowsComponent, selectableRowsComponentProps, selectableRowDisabled, currentPage } = useTableContext();
   const indeterminate = selectedRows.length > 0 && !allSelected;
-  const rows = selectableRowDisabled ? data.filter(row => !selectableRowDisabled(row)) : data;
+  const rows = selectableRowDisabled ? data.filter(row => !selectableRowDisabled(row)) : data.slice(0, 10);
   const isDisabled = rows.length === 0;
   const handleSelectAll = () => dispatch({ type: 'SELECT_ALL_ROWS', rows });
 
